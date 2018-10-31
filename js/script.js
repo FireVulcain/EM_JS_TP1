@@ -5,7 +5,8 @@ function repetoireContact(){
         $( '#myForm' ).append('<input type="text" name="name" id="surName" placeholder="Nom" required /><br>')
                          .append('<input type="text" name="surname" id="name" placeholder="Prénom" required /><br>')
                          .append('<input type="text" name="phone" id="yourPhone" placeholder="Téléphone" required /><br>')
-                         .append('<input id="sendInfo" type="submit" value="Envoyer contact"/> <br>');
+                         .append('<input id="sendInfo" type="submit" value="Envoyer contact"/> <br>')
+                         .append('<a href="#" id="clearContact">Vider les contacts</a>');
 
         $('#displayContact').append(
             "<table class='tableContainer'>" +
@@ -27,7 +28,7 @@ function repetoireContact(){
 
             for(let i in getLocalStoreSurName){
                 $('.bodyTable').append(
-                    "<tr class='displayContact' style='text-align: center'>"+
+                    "<tr class='displayContact'>"+
                     "<td>"+ getLocalStoreSurName[i] + "</td>" +
                     "<td>" + getLocalStoreName[i] + "</td>" +
                     "<td>" + getLocalStorePhone[i] + "</td>"+
@@ -59,7 +60,7 @@ function repetoireContact(){
                 localStorage.setItem("phone", JSON.stringify(retrievePhone));
 
                 $('.bodyTable').append(
-                    "<tr class='displayContact' style='text-align: center'>"+
+                    "<tr class='displayContact'>"+
                         "<td>"+ surnameVal + "</td>" +
                         "<td>" + nameVal + "</td>" +
                         "<td>" + phoneVal + "</td>"+
@@ -72,6 +73,10 @@ function repetoireContact(){
             }
 
         });
+        $('#clearContact').on('click', function(){
+            localStorage.clear();
+            $('tr.displayContact').remove();
+        })
     });
 }
 repetoireContact();

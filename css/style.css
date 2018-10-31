@@ -30,14 +30,25 @@ input[type="submit"]{
     transition: 0.2s;
     font-size: 16px;
 }
-
+#clearContact{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #009ED8;
+    border: none;
+    color: white;
+    transition: 0.2s;
+    font-size: 12px;
+    text-decoration: none;
+    font-family: 'Poppins',sans-serif;
+}
 .alert{
     font-family: 'Poppins',sans-serif;
     color:red;
     margin-top: 20px;
 }
 
-#displayContact{margin-top: 50px;}
+#displayContact{margin-top: 50px; text-align: center}
 
 .tableContainer{
     width: 960px;
