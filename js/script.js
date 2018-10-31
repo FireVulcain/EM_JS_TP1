@@ -1,4 +1,4 @@
-function createInputAndStore(){
+function repetoireContact(){
     $(document).ready(function() {
         $('#inputForm').append('<div class="containerInput"></div>').append('<div id="displayContact"></div> <br>');
         $('.containerInput').append('<form id="myForm" method="#" action="#"></form>');
@@ -9,13 +9,32 @@ function createInputAndStore(){
 
         $('#displayContact').append(
             "<table class='tableContainer'>" +
-                "<tr class='titleTable'>" +
-                    "<th>Nom</th>" +
-                    "<th>Prenom</th>" +
-                    "<th>Email</th>"+
-                "</tr>"+
+                "<tbody class='bodyTable'>"+
+                    "<tr class='titleTable'>" +
+                        "<th>Nom</th>" +
+                        "<th>Prenom</th>" +
+                        "<th>Email</th>"+
+                    "</tr>"+
+                "</tbody>"+
             "</table>"
         );
+
+        // Si il y'a des données dans le localstorage, les affiches au début de la fonction
+        if ( localStorage.length > 0 ) {
+            let getLocalStoreSurName = JSON.parse(localStorage.getItem("surname"));
+            let getLocalStoreName = JSON.parse(localStorage.getItem("name"));
+            let getLocalStorePhone = JSON.parse(localStorage.getItem("phone"));
+
+            for(let i in getLocalStoreSurName){
+                $('.bodyTable').append(
+                    "<tr class='displayContact' style='text-align: center'>"+
+                    "<td>"+ getLocalStoreSurName[i] + "</td>" +
+                    "<td>" + getLocalStoreName[i] + "</td>" +
+                    "<td>" + getLocalStorePhone[i] + "</td>"+
+                    "</tr>"
+                );
+            }
+        }
 
         $( "#sendInfo" ).on('click', function (event) {
             event.preventDefault();
@@ -26,6 +45,7 @@ function createInputAndStore(){
 
             if(surnameVal !== "" && nameVal !== "" && phoneVal !== ""){
                 $(".alert").remove();
+
                 let retrieveSurName = JSON.parse(localStorage.getItem('surname')) || [];
                 let retrieveName    = JSON.parse(localStorage.getItem('name')) || [];
                 let retrievePhone   = JSON.parse(localStorage.getItem('phone')) || [];
@@ -38,7 +58,7 @@ function createInputAndStore(){
                 localStorage.setItem("name", JSON.stringify(retrieveName));
                 localStorage.setItem("phone", JSON.stringify(retrievePhone));
 
-                $('tbody').append(
+                $('.bodyTable').append(
                     "<tr class='displayContact' style='text-align: center'>"+
                         "<td>"+ surnameVal + "</td>" +
                         "<td>" + nameVal + "</td>" +
@@ -46,31 +66,12 @@ function createInputAndStore(){
                     "</tr>"
                 );
             }else{
-                $( '.containerInput' ).append("<p class='alert'>Remplir tous les champs</p>")
+                if($('.alert').length < 1){
+                    $( '.containerInput' ).append("<p class='alert'>Remplir tous les champs</p>");
+                }
             }
+
         });
-
     });
 }
-
-function getStorageValue(){
-    $(document).ready(function() {
-        if ( localStorage.length > 0 ) {
-            let getLocalStoreSurName = JSON.parse(localStorage.getItem("surname"));
-            let getLocalStoreName = JSON.parse(localStorage.getItem("name"));
-            let getLocalStorePhone = JSON.parse(localStorage.getItem("phone"));
-
-            for(let i in getLocalStoreSurName){
-                $('tbody').append(
-                    "<tr class='displayContact' style='text-align: center'>"+
-                        "<td>"+ getLocalStoreSurName[i] + "</td>" +
-                        "<td>" + getLocalStoreName[i] + "</td>" +
-                        "<td>" + getLocalStorePhone[i] + "</td>"+
-                    "</tr>"
-                );
-            }
-        }
-    });
-}
-createInputAndStore();
-getStorageValue();
+repetoireContact();
