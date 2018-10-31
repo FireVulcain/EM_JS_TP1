@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{font-family: 'Poppins', sans-serif;}
+
+.containerInput{
+    width: 960px;
+    margin: 20px auto 0;
+    text-align: center;
+}
+input[type="text"]{
+    outline: none;
+    z-index: 1;
+    position: relative;
+    background: none;
+    height: 30px;
+    padding : 10px 0 10px 10px;
+    color: #212121;
+    font-size: 16px;
+    font-weight: 400;
+    width: 25%;
+    border : 1px solid #cecece;
+    margin: 5px 0;
+}
+
+input[type="submit"]{
+    margin-top: 10px;
+    padding: 0.8em 1.4em;
+    background: #009ED8;
+    border: none;
+    color: white;
+    transition: 0.2s;
+    font-size: 16px;
+}
+
+.alert{
+    font-family: 'Poppins',sans-serif;
+    color:red;
+    margin-top: 20px;
+}
+
+#displayContact{margin-top: 50px;}
+
+.tableContainer{
+    width: 960px;
+    margin : 0 auto;
+    overflow-x: hidden;
+}
+.tableContainer *{font-family: 'Poppins', sans-serif;}
+
+.tableContainer .titleTable{
+    color: #ffffff;
+    background: #6c7ae0;
+}
+
+.tableContainer th:first-child{border-top-left-radius : 10px;}
+.tableContainer th:last-child{border-top-right-radius : 10px;}
+
+.titleTable th{
+    padding : 20px 0;
+    margin-bottom: 20px;
+}
+
+.displayContact:nth-child(2n+0){background-color:#f8f6ff;;}
+.tableContainer .displayContact td{padding : 15px 0;color : #808080;}
